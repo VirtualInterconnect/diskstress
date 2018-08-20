@@ -1,0 +1,14 @@
+Source: diskstress
+Section: utils
+Priority: extra
+Maintainer: Michael Mol <mike@virtualinterconnect.com>
+Build-Depends: autoconf-archive, debhelper (>=9), dh-autoreconf
+Standards-Version: 3.9.7
+Homepage: https://github.com/VirtualInterconnect/diskstress
+
+Package: diskstress
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Seeks to destroy hard drives through aggressive wear and tear.
+ diskstress attempts to destroy your (spinning rust)

@@ -1,0 +1,51 @@
+.\" Process this file with
+.\" groff -man -Tascii diskstress.8
+.\"
+.TH DISKSTRESS 8 "December 2012" Linux "User Manuals"
+.SH NAME
+diskstress \- Seek to physically wear out mechanical disks
+.SH SYNOPSIS
+.B diskstress 
+.I device
+.SH DESCRIPTION
+.B diskstress
+seeks to physically wear out the mechanical disk identified by
+.I device
+, bypassing any caches present when it can.
+.B WARNING! THIS PROGRAM WILL DESTROY YOUR DATA.
+It may not destroy data quickly or efficienty, but its methods are deliberately destructive. It is not
+.I designed
+to destroy data, but rather the hardware the data rests upon. As a side-effect, it will destroy some (and perhaps all) of the data whether or not it is successful in destroying the hardware.
+.SH OPTIONS
+.IP device
+.B diskstress
+will perform read and write operations destructively on 
+.I device
+, whether 
+.I device
+is the path to a device node or some other file.
+.SH EXAMPLE
+To operate on
+.I /dev/sda
+:
+.PP
+.nf
+.RS
+diskstress /dev/sda
+.RE
+.fi
+.PP
+This will perform aggressive testing on
+.I /dev/sda
+until the device dies or until
+.B diskstress
+\'s test routines have run through all of its parameter permutations.
+
+.SH AUTHOR
+Michael Mol <opensource at virtualinterconnect dot com>
+
+.SH "SEE ALSO"
+
+The file
+.BR README.md
+included in the distribution contains much more theory and operational guidance detail. If you're using anything more than the simplest of setups, you should read that file.

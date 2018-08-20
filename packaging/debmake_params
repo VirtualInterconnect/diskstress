@@ -1,0 +1,23 @@
+# I wouldn't believe Debian's debmake does this this way if I didn't read the
+# code myself. You *can* place arbitary Python3 code here. This means that
+# anyone who goes to build a Debian package from this repository is vulnerable
+# to your whims. With great power comes great responsibility.
+
+# To know what fields you need to place here, you'll have to look at debmake's
+# source. Sorry.
+
+# This won't work. debmake's sanity() routine unconditionally replaces
+# 'section', and does so after this file is read.
+para['section'] = "utils"
+
+# This won't work. debmake's sanity() routine unconditionally replaces
+# 'section', and does so after this file is read.
+para['homepage'] = "https://github.com/"
+
+para['desc'] = "Seeks to destroy hard drives through aggressive wear and tear."
+para['desc_long'] = """ diskstress attempts to destroy your (spinning rust)
+hard disk through aggressive mechanical wear to push it into the trough of the
+bathtub curve; a drive that fails early during testing is a drive less likely
+to fail in production."""
+
+para['build_depends'].add('autoconf-archive')

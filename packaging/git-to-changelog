@@ -1,0 +1,39 @@
+#!/bin/sh
+#
+# Copyright 2018 Virtual Interconnect, LLC
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+#
+
+# Peel the name and version number out of configure.ac
+name=$(grep AC_INIT configure.ac | sed -e 's/^AC_INIT(\[\(.*\)\], *\[\(.*\)\], *\[\(.*\)\])$/\1/')
+version=$(grep AC_INIT configure.ac | sed -e 's/^AC_INIT(\[\(.*\)\], *\[\(.*\)\], *\[\(.*\)\])$/\2/')
+
+log_commit () {
+    comdata=$(git show --no-patch $1)
+    comauthor=$(echo "${comdata}" | grep -e "^Author:" | sed -e 's/^Author: \(.*\)/\1/')
+    comdate=$(echo "${comdata}" | grep -e "^Date:" | sed -e 's/^Date: \+\(.*\)/\1/')
+    commsg=$(echo "${comdata}" | tail -n+5 | head -n1 )
+    
+    echo "${name} (${version}-1) UNRELEASED; urgency=low"
+    echo "  * ${commsg}"
+    echo " -- ${comauthor}  ${comdate}"
+    echo
+
+}
+
+# Read the git log line by line and convert to debian changelog format
+git log --pretty=oneline | cut -c-40 | while read commit ; do
+    log_commit $commit
+done 
+
