@@ -19,7 +19,7 @@ To my knowledge at the time, there were no other free utilities that performed t
 
 ## What does it do?
 
-`diskstress` attempts to destroy your (spinning rust) hard disk through mechanical wear by forcing aggressive seeking on disk. Using the operating system's direct I/O capabilities, it bypasses the system cache and drives read/write operateions to the underlying devices. It performs reads and writes at widely-separated, continually-changing positions on the disk in order to force as much mechanical wear on the disk in as short a time as possible.
+`diskstress` attempts to destroy your (spinning rust) hard disk through mechanical wear by forcing aggressive seeking on disk. Using the operating system's direct I/O capabilities, it bypasses the system cache and drives read/write operations to the underlying devices. It performs reads and writes at widely-separated, continually-changing positions on the disk in order to force as much mechanical wear on the disk in as short a time as possible.
 
 # How to use this tool
 ## WARNING!
@@ -68,7 +68,7 @@ The fourth through ninth columns are an array of operation timings; the test con
 
 The tenth column is the location of "Point A", and the eleventh "Point B."
 
-The twelfth coloumn is how far points A and B jump between each cycle. 
+The twelfth column is how far points A and B jump between each cycle. 
 
 If your disk experiences an error, you will see output like this:
 
@@ -173,7 +173,7 @@ It would be pretty darn helpful to save the telemetry data out to disk rather th
 
 # Nice-to-haves:
 ## Multi-disk
-Rather than running a separate instance per disk, we should have a single instance operate on multiple disks in parallel. This would give us the ability to isolate sources of timing discrepency (and thus interference with our disk operations). By streaming data into disk A to fill up any intermediate cache with disk-A-data, we could calculate how much data disk B caches, for example.
+Rather than running a separate instance per disk, we should have a single instance operate on multiple disks in parallel. This would give us the ability to isolate sources of timing discrepancy (and thus interference with our disk operations). By streaming data into disk A to fill up any intermediate cache with disk-A-data, we could calculate how much data disk B caches, for example.
 ## Diagnostics
 In the sample output above, it's possible to observe that there is a read cache in place, but that the positions being written to were not cached prior to being written to. If the write operation timings were about the same as the second set of read operations, it could be inferred that a write cache was in place.
 
